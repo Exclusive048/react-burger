@@ -1,0 +1,41 @@
+.external {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 568px;
+}
+
+.internal {
+    align-items: end;
+    overflow-y: auto;
+    max-height: 465px;  
+}
+
+.basketList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 600px;
+}
+
+.ingredientElem {
+    display: flex;
+    align-items: center;
+}
+
+
+.orderInfo {
+    display: flex;
+    align-items: center;
+    
+}
+
+.orderInfoPrice {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.orderInfoButton{
+    float: right;
+}

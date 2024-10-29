@@ -1,0 +1,42 @@
+  body {
+    background-color: #2d2d2d;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 30px;
+    color: #ccc;
+  }
+  
+  .headerItem {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  .headerItem:last-child {
+    margin-right: 0;
+    margin-left: 250px; 
+  }
+  
+  .headerButton {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+  }
+  .logoContainer {
+    margin-left: 40px; 
+    margin-right: 40px;
+  }

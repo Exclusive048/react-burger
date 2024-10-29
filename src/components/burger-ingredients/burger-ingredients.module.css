@@ -1,0 +1,13 @@
+.tabs {
+    display: flex;
+  }
+  
+  .components {
+    overflow-y: auto;
+    max-width: 600px;
+    max-height: 756px;
+  }
+  
+  .elem_container {
+    display: flex;
+  }
