@@ -1,0 +1,57 @@
+.header {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    background-color: #1C1C21;
+
+}
+
+.nav {
+    width: 1280px;
+    height: 56px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.menuItem{
+    border-radius: 50px;
+    border: 1px dashed #4C4CFF;
+    align-items: center;
+    background-color: transparent;
+    font-family: inherit;
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.menuItemText{
+    font-size:16px;
+    color: #F2F2F3;
+}
+
+.fullHeight{
+    height:100%;
+}
+
+.leftPosition{
+    flex: 1 0 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.centerPosition {
+    flex: 0 0 content;
+}
+
+.rightPosition {
+    flex: 1 0 100px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.colorTitle {
+    color:#8585AD;
+}

@@ -1,0 +1,29 @@
+.modal {
+    background: #1c1c21;
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    border-radius: 40px;
+    width: 720px;
+    cursor: auto;
+    z-index: 5;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .closeModalCursor {
+    cursor: pointer;
+  }
+  
+  .closeModalIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
