@@ -7,7 +7,8 @@ import PropTypes from "prop-types";
 const BurgerIngredientsElem = (props) => {
   return (
     <div className={`${elemStyles.elem} ml-4 mr-5 mb-10 mt-6`} onClick={props.onClick}>
-      <img className={`${elemStyles.elem} ml-4 mr-5`} alt="previewImage" src={props.imageSrc}/>
+      <img className={`${elemStyles.elem} ml-4 mr-5`} alt={props.imageSrc.name} src={props.imageSrc}>
+      </img>
       <div className={`${elemStyles.price} mb-1 mt-1`}>
         <p className="text text_type_digits-small mr-2">{props.price}</p>
         <CurrencyIcon type="primary" />

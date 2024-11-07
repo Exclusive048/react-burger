@@ -16,32 +16,23 @@ const App = () => {
     
     const [successed, setSuccessed] = useState(false);
 
-   /* const getIngredients = () => {
-        setState({ ...state, hasError: false, isLoading: true });
-        fetch(ingredientsURL)
-          .then(res => res.json())
-          .then(data => 
-            { setState({ ...state, ingredients:data.data, isLoading: false })
-                setSuccessed(true)  
-            })
-          .catch(e => {
-            setState({ ...state, hasError: true, isLoading: false });
-          });
-      };*/
-
-      async function getIngredients (){
-        setRequesState({ ...stateRequest, hasError: false, isLoading: true });
-        let response = await fetch(ingredientsURL);
-        if (response.ok) {
-            let data = await response.json();
-            setRequesState({ ...stateRequest, ingredients:data.data, isLoading: false })
+    async function getIngredients() {
+        try {
+            setRequesState({ ...stateRequest, hasError: false, isLoading: true });
+            const response = await fetch(ingredientsURL);
+            if (!response.ok) {
+                throw new Error("Ошибка HTTP: " + response.status);
+            }
+            const data = await response.json();
+            setRequesState({ ...stateRequest, ingredients: data.data, isLoading: false });
             setSuccessed(true);
-        } 
-        else {
+        } catch (error) {
+            // Обработка ошибок
             setRequesState({ ...stateRequest, hasError: true, isLoading: false });
-            alert("Ошибка HTTP: " + response.status);
+            alert(error.message);
         }
-      }
+    }
+    
       
       useEffect(() => {
         getIngredients();
@@ -53,14 +44,14 @@ const App = () => {
             <AppHeader isLoading={stateRequest.isLoading} hasError={stateRequest.hasError}/>
 
             {  !successed ? (<p>Info loading</p>) : (
-            <section className={appStyles.row}>
+            <main className={appStyles.row}>
                 <div className='mr-10'>
                     <BurgerIngredients tabs={Tabs} data={stateRequest.ingredients} />
                 </div>
                 <div>
                     <BurgerConstructor data={stateRequest.ingredients}/>
                 </div>
-            </section> )}
+            </main> )}
         </>
     )
 }

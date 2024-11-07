@@ -25,7 +25,7 @@ const OrderDetails = (props) => {
 }
 
 OrderDetails.propTypes = {
-    show: PropTypes.bool.isRequired,
+    show: PropTypes.bool,
     onCloseModal: PropTypes.func.isRequired,
 }
 

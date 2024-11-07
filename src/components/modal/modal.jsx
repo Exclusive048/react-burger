@@ -57,7 +57,7 @@ const Modal = (props) => {
 
 
 Modal.propTypes = {
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
   onCloseModal: PropTypes.func,
   header: PropTypes.string,
   children: PropTypes.any

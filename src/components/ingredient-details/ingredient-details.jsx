@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const IngredientDetails = (props) =>{
     return (
         <div className={ingredientDetailsStyle.mainContainer}>
-            <img alt="previewImage" src={props.ingredientImg}/>
+            <img alt={props.ingredientImg.img} src={props.ingredientImg}/>
             <p className={`${ingredientDetailsStyle.ingredientNameText}text text_type_main-medium mt-4`}>
                 {props.ingredientName}
             </p>
@@ -31,9 +31,9 @@ const IngredientDetails = (props) =>{
 }
 
 IngredientDetails.propTypes = {
-    onCloseModal: PropTypes.func.isRequired,
+    onCloseModal: PropTypes.func,
     ingredientImg: PropTypes.string.isRequired,
-    ingredientNameText: PropTypes.string.isRequired,
+    ingredientNameText: PropTypes.string,
     ingredientCalories: PropTypes.number.isRequired,
     ingredientProtein: PropTypes.number.isRequired,
     ingredientFat: PropTypes.number.isRequired,
