@@ -21,20 +21,21 @@ const BurgerIngredients = (props) => {
 
    return (
     <>
-    { <Modal 
-        onCloseModal={() => setIngredientState((prevState) => ({...prevState, show: false, }))}
-        show={ingredientState.show}
-      >
-        <IngredientDetails
-          ingredientName={ingredientState.ingredientName}
-          ingredientProtein={ingredientState.ingredientProtein}
-          ingredientFat={ingredientState.ingredientFat}
-          ingredeintCarbohydrates={ingredientState.ingredeintCarbohydrates}
-          ingredientCalories={ingredientState.ingredientCalories}
-          ingredientImg={ingredientState.ingredientImg}
-        />
-      </Modal>
-    }
+ 
+      {ingredientState.show && (
+        <Modal 
+          onCloseModal={() => setIngredientState((prevState) => ({...prevState, show: false, }))}
+        >
+          <IngredientDetails
+            ingredientName={ingredientState.ingredientName}
+            ingredientProtein={ingredientState.ingredientProtein}
+            ingredientFat={ingredientState.ingredientFat}
+            ingredeintCarbohydrates={ingredientState.ingredeintCarbohydrates}
+            ingredientCalories={ingredientState.ingredientCalories}
+            ingredientImg={ingredientState.ingredientImg}
+          />
+        </Modal>
+        )}
       <p className="text text_type_main-large mb-5 mt-10">Соберите бургер</p>
       <div className={`${ingredientsStyles.tabs} mb-10`}>
         {props.tabs.map((tab) => (

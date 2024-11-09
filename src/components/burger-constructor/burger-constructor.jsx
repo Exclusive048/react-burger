@@ -8,10 +8,16 @@ import { IngredientType } from '../../utils/types';
 
 const BurgerConstructor = (props) => {
     const [show, setShow] = useState(false)
-
+    console.log(show)
     return (
       <>
-        <OrderDetails identifierOrder={"034536"} onCloseModal={() => setShow(false)}/>
+        {show && (
+        <OrderDetails 
+            identifierOrder={"034536"} 
+            onCloseModal={() => setShow(false)}
+            show={show}
+        />
+        )}
           <div className={`${burgerConstructorStyles.basketList} mt-25`}>
             <div className={`${burgerConstructorStyles.external} ml-4 mr-4 mb-4`}>
                 <ConstructorElement type="top" isLocked={true} text={props.data[0].name + ' (верх)'} price={props.data[0].price} thumbnail={props.data[0].image}/>
@@ -38,7 +44,7 @@ const BurgerConstructor = (props) => {
                     <CurrencyIcon type="primary" />
                 </div>
                 <div className={burgerConstructorStyles.orderInfoButton}>
-                    <Button htmlType="button" type="primary" size="large" onClick={() => setShow(true)}>Оформить заказ</Button>
+                    <Button htmlType="button" type="primary" size="large" onClick={() => {setShow(true); console.log('Current show state', show); }}>Оформить заказ</Button>
                 </div>
             </div>
       </div>

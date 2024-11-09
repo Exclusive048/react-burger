@@ -8,21 +8,23 @@ import { createPortal } from "react-dom";
 const modalRoot = document.getElementById("root-modals");
 
 const Modal = (props) => {
+  console.log("Modal show:", props.show);
     useEffect(() => {
-        const close = (e) => {
-          if(e.key === "Escape"){
-            props.onCloseModal()
+      const close = (e) => {
+          if (e.key === "Escape") {
+              props.onCloseModal();
           }
-        }
-        if (props.show) {
-          window.addEventListener('keydown', close)
-        }
+      };
+
+      if (props.show) {
+          window.addEventListener("keydown", close);
+      }
+
       return () => {
-        if(!props.show)
-        {
-          window.removeEventListener('keydown', close)}
-        }
-    }, [props.show]);
+          window.removeEventListener("keydown", close);
+      };
+  }, [props.show]);
+
 
     if(!props.show){
         return null;
@@ -57,7 +59,7 @@ const Modal = (props) => {
 
 
 Modal.propTypes = {
-  show: PropTypes.bool,
+  show: PropTypes.bool.isRequired,
   onCloseModal: PropTypes.func,
   header: PropTypes.string,
   children: PropTypes.any
