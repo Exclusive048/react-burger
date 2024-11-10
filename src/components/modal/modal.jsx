@@ -8,7 +8,6 @@ import { createPortal } from "react-dom";
 const modalRoot = document.getElementById("root-modals");
 
 const Modal = (props) => {
-  console.log("Modal show:", props.show);
     useEffect(() => {
       const close = (e) => {
           if (e.key === "Escape") {
@@ -16,20 +15,13 @@ const Modal = (props) => {
           }
       };
 
-      if (props.show) {
-          window.addEventListener("keydown", close);
-      }
-
+      window.addEventListener("keydown", close);
+      
       return () => {
           window.removeEventListener("keydown", close);
       };
-  }, [props.show]);
+  }, []);  // Обратите внимание, что зависимости здесь пустые
 
-
-    if(!props.show){
-        return null;
-    }
-    
     return createPortal(
     (
       <section>
@@ -44,14 +36,14 @@ const Modal = (props) => {
         ) : (
           <div>
             <div className={`${modalStyles.closeModalIcon} mr-10 mt-15`} onClick={props.onCloseModal}>
-              <CloseIcon className={modalStyles.cursorStyle}type="primary" />
+              <CloseIcon className={modalStyles.cursorStyle} type="primary" />
             </div>
           </div>
         )}
         {props.children}
-    </div>
-    <ModalOverlay onCloseModal={props.onCloseModal}></ModalOverlay>
-    </section>
+      </div>
+      <ModalOverlay onCloseModal={props.onCloseModal}></ModalOverlay>
+      </section>
     ), 
     modalRoot
   );
@@ -59,7 +51,6 @@ const Modal = (props) => {
 
 
 Modal.propTypes = {
-  show: PropTypes.bool.isRequired,
   onCloseModal: PropTypes.func,
   header: PropTypes.string,
   children: PropTypes.any
