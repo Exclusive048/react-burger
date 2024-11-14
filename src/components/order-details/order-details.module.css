@@ -1,0 +1,30 @@
+.orderId{
+    text-align: center;
+}
+.iconBox{
+    background: url('../../images/done.svg');
+    width: 107px;
+    height: 102px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textOrder{
+    font-family: JetBrains Mono;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+}
+
+.textBottom{
+    font-family: JetBrains Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+}
+
+.bottomColor{
+    color: #8585AD;
+}
