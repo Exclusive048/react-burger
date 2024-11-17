@@ -16,6 +16,7 @@ export const makeOrderReducer = (state = initialState, action) => {
           };
         }
         case MAKE_ORDER_SUCCESS: {
+          console.log("MAKE_ORDER_SUCCESS редьюсер, orderIdentifier:", action.orderIdentifier);
           return {
             ...state,
             orderIdentifier: action.orderIdentifier,

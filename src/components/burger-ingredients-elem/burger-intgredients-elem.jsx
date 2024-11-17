@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SHOW_INGREDIENT_DETAIL } from "../../services/actions/burger-ingredients";
 import { useMemo } from 'react';
 import { useDrag } from 'react-dnd';
+import { IngredientType } from '../../utils/types';
 
 const BurgerIngredientsElem = ({item}) => {
   
@@ -59,7 +60,7 @@ const item = PropTypes.shape({
 })
 
 BurgerIngredientsElem.propTypes = {
-  item: item.isRequired,
+  data: PropTypes.arrayOf(IngredientType.isRequired)
 };
 
 
