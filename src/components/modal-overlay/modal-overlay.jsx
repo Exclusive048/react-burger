@@ -8,7 +8,7 @@ const ModalOverlay = (props) => {
 } 
   
 ModalOverlay.propTypes = {
-    onCloseModal: PropTypes.func.isRequired,
+    onCloseModal: PropTypes.func,
 
 };   
 
