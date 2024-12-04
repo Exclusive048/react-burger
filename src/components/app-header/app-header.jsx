@@ -1,30 +1,45 @@
 import React from 'react';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import headerStyles from './app-header.module.css';
+import { useLocation , NavLink, Link } from "react-router-dom";
 
+
+const iconType = (link, active) => {
+    if (active === link) return "primary";
+    return "secondary";
+ };
+
+ const colorTextType = (link, active) => {
+    if (active === link) return headerStyles.menuItemText;
+    return headerStyles.colorTitle;
+
+ }
 const AppHeader = () => {
-    
+
+    const location = useLocation(); 
     return(
         <header className={headerStyles.header}>
             <nav className={headerStyles.nav}>
                 <div className={`${headerStyles.leftPosition} ${headerStyles.fullHeight} `}>
-                    <a href="#" className={`${headerStyles.menuItem} p-4 mr-2`}>
-                        <BurgerIcon type='primary'/>
-                        <span className={`${headerStyles.menuItemText} text text_type_main-default ml-2`}>Конструктор</span>
-                    </a>
-                    <a href="#" className={`${headerStyles.menuItem} p-4`}>
-                        <ListIcon type='secondary'/>
-                        <span className={`${headerStyles.menuItemText} ${headerStyles.colorTitle} text text_type_main-default ml-2`}>Лента заказов</span>
-                    </a>
+                    <NavLink to="/" className={`${headerStyles.menuItem} p-4 mr-2`}>
+                        <BurgerIcon type={iconType("/", location.pathname)}/>
+                        <span className={`${colorTextType("/", location.pathname)} text text_type_main-default ml-2`}>Конструктор</span>
+                    </NavLink>
+                    <NavLink to="/profile/orders" className={`${headerStyles.menuItem} p-4`}>
+                        <ListIcon type={iconType("/profile/orders", location.pathname)}/>
+                        <span className={`${colorTextType("/profile/orders", location.pathname)} ${headerStyles.colorTitle} text text_type_main-default ml-2`}>Лента заказов</span>
+                    </NavLink>
                 </div>
                 <div className={`${headerStyles.centerPosition} ${headerStyles.fullHeight}`}>
-                    <Logo />
+                    <Link to="/">
+                        <Logo />
+                    </Link>
                 </div>
                 <div className={`${headerStyles.rightPosition} ${headerStyles.fullHeight} `}>
-                    <a href="#" className={`${headerStyles.menuItem} p-4 mr-2`}>
-                        <ProfileIcon  type='secondary'/>
-                        <span className={`${headerStyles.menuItemText} ${headerStyles.colorTitle} text text_type_main-default  ml-2`}>Личный кабинет</span>
-                    </a>
+                    <NavLink to="/profile" className={`${headerStyles.menuItem} p-4 mr-2`}>
+                        <ProfileIcon  type={iconType("/profile", location.pathname)}/>
+                        <span className={`${colorTextType("/profile", location.pathname)} ${headerStyles.colorTitle} text text_type_main-default  ml-2`}>Личный кабинет</span>
+                    </NavLink>
                 </div>
             </nav> 
         </header> 

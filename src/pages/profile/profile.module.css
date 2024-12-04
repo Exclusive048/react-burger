@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+  }
+
+.form{
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 24px;
+}
+.navitem {
+	text-decoration: none;
+	height: 60px;
+	display: flex;
+	align-items: center;
+}
+
+.navitem:hover {
+	opacity: 0.8;
+}
+
+.button{
+    display: flex;
+	flex-direction: row;
+	gap: 16px;
+}
+
+.active{
+    color: white;
+}

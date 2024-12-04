@@ -10,12 +10,15 @@ import { useDrop } from 'react-dnd';
 import { v4 } from 'uuid';
 import { totalPriceSelector } from "../../utils/total-price-selector";
 import BurgerConstructorElem from "../burger-constructor-elem/burger-constructor-elem";
+import { useNavigate } from "react-router";
 
 const BurgerConstructor = () => {
     const dispatch = useDispatch();
     const orderIdentifier = useSelector(store => store.makeOrder.orderIdentifier);
     const orderRequest = useSelector(store => store.makeOrder.orderRequest);
     const { bun, ingredients } = useSelector(store => store.constructorBurger);
+    const user = useSelector(state => state.user.user);
+    const navigate = useNavigate();
     const [, dropTarget] = useDrop({
         accept: 'ingredient',
         drop(item) { addIngredient({...item, id: v4()}) }
@@ -43,10 +46,14 @@ const BurgerConstructor = () => {
     };
 
     const onSubmit = (e) => {
-        e.preventDefault();
-        const burgerElems = [bun, ...ingredients];
-        const ingredientsIds = burgerElems.map(el => el._id);
-        dispatch(makeOrder(ingredientsIds));
+        if (!user) {
+            navigate("/login")
+          }
+          else{
+            const burgerElems = [bun, ...ingredients]
+            const ingredientsIds = burgerElems.map( el => el._id)
+            dispatch(makeOrder(ingredientsIds));
+          }
     };
 
     return (
