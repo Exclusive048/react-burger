@@ -1,0 +1,19 @@
+.main {
+	margin: 120px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 520px;
+	margin: auto;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+}
