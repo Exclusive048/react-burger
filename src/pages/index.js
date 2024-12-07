@@ -8,15 +8,14 @@ import ProfileOrdersPage from "./profile/profile-orders";
 import NotFound404 from "./not-found-404";
 import IngredientDetailPage from "./ingredient-detail/ingredient-details";
 
-
 export {
-    HomePage,
-    ProfilePage,
-    RegisterPage,
-    LoginPage,
-    ForgotPasswordPage,
-    ResetPasswordPage,
-    ProfileOrdersPage,
-    NotFound404,
-    IngredientDetailPage
+  HomePage,
+  ProfilePage,
+  RegisterPage,
+  LoginPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  ProfileOrdersPage,
+  NotFound404,
+  IngredientDetailPage,
 };
