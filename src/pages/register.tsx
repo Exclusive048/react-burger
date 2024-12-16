@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { register } from '../services/actions/user';
 import { Link } from 'react-router-dom';
 import { useForm } from '../hooks/use-form';
+import { FC, FormEvent } from 'react';
 
 
-
-const RegisterPage = () => {
+const RegisterPage: FC = () => {
 
     const dispatch = useDispatch();
     const { form, onChange } = useForm({
@@ -16,9 +16,9 @@ const RegisterPage = () => {
 		password: '',
 	})
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      dispatch(register(form));
+      dispatch<any>(register(form));
     };
 
     return(
@@ -30,25 +30,26 @@ const RegisterPage = () => {
                         placeholder='Имя'
                         name='name'
                         onChange={onChange}
-                        value={form.name}
-                    />
+                        value={form.name ?? ''} 
+                        onPointerEnterCapture={undefined} 
+                        onPointerLeaveCapture={undefined}                    />
                 </div>
                 <div className='mb-6'>
                     <EmailInput
                         name='email'
-                        value={form.email}
+                        value={form.email ?? ''}
                         onChange={onChange}
                     />
                 </div>
                 <div className='mb-6'>
                     <PasswordInput       
-                        value={form.password}
+                        value={form.password ?? ''}
                         name='password'
                         onChange={onChange}
                     />
                 </div>
                 <div className={`${styles.button} mb-20`}>
-                    <Button type="primary" size="medium">
+                    <Button type="primary" size="medium" htmlType='submit'>
                         Зарегистрироваться
                     </Button>
                 </div>

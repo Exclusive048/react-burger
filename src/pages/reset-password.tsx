@@ -4,20 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { resetPassword } from '../services/actions/user';
 import { useForm } from '../hooks/use-form';
+import { FC, FormEvent } from 'react';
 
-const ResetPasswordPage = () => {
+const ResetPasswordPage: FC = () => {
     const dispatch = useDispatch();
-    const resetPasswordSuccess = useSelector( state => state.user.resetPasswordSuccess );
-
+    const resetPasswordSuccess = useSelector((state:any) => state.user.resetPasswordSuccess );
+    
 	const { form, onChange } = useForm({
 		password: '',
 		token: '',
 	})
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(resetPassword(form));
+        dispatch<any>(resetPassword(form));
     };
 
     if (resetPasswordSuccess) {
@@ -33,7 +34,7 @@ const ResetPasswordPage = () => {
                         name='password'
                         placeholder='Введите новый пароль'
                         onChange={onChange}
-                        value={form.password}
+                        value={form.password ?? ''}
                     />
                 </div>
                 <div className='mb-6'>
@@ -41,8 +42,9 @@ const ResetPasswordPage = () => {
                         name='name'
                         placeholder='Введите код из письма'
                         onChange={onChange}
-                        value={form.token}
-                    />
+                        value={form.token ?? ''} 
+                        onPointerEnterCapture={undefined} 
+                        onPointerLeaveCapture={undefined}                    />
                 </div>
                 <div className={`${styles.button} mb-20`}>
                     <Button type="primary" size="medium" htmlType='submit'>
