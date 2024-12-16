@@ -4,12 +4,12 @@ import headerStyles from './app-header.module.css';
 import { useLocation , NavLink, Link } from "react-router-dom";
 
 
-const iconType = (link, active) => {
+const iconType = (link : string, active : string) => {
     if (active === link) return "primary";
     return "secondary";
  };
 
- const colorTextType = (link, active) => {
+ const colorTextType = (link : string, active : string) => {
     if (active === link) return headerStyles.menuItemText;
     return headerStyles.colorTitle;
 

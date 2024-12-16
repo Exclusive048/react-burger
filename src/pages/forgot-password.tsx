@@ -4,15 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom'
 import { forgotPassword } from '../services/actions/user';
 import { useForm } from '../hooks/use-form';
+import { FC, FormEvent } from 'react';
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage: FC = () => {
     const dispatch = useDispatch();
-    const forgotPasswordSuccess = useSelector( state => state.user.forgotPasswordSuccess );
+    const forgotPasswordSuccess = useSelector((state:any) => state.user.forgotPasswordSuccess );
     const { form, onChange } = useForm({ email: '' })
-
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(forgotPassword(form));
+        dispatch<any>(forgotPassword(form));
     };
 
     if (forgotPasswordSuccess) {
@@ -27,7 +28,7 @@ const ForgotPasswordPage = () => {
                     <EmailInput
                         name='email'
                         onChange={onChange}
-					    value={form.email}
+					    value={form.email ?? ''}
                     />
                 </div>
                 <div className={`${styles.button} mb-20`}>
