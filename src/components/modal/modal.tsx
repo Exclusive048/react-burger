@@ -4,13 +4,13 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Oval } from "react-loader-spinner";
+import { PropsWithChildren } from "react";
 
-type ModalProps = {
+type ModalProps = PropsWithChildren<{
   onCloseModal: () => void;
   header?: string;
-  children: React.ReactNode;
   orderRequest?: boolean;
-};
+}>;
 
 const Modal: React.FC<ModalProps> = ({ onCloseModal, header, children, orderRequest = false }) => {
   useEffect(() => {
