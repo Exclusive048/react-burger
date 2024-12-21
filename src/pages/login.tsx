@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { useCallback } from 'react'
 import { login } from '../services/actions/user';
 import { useForm } from '../hooks/use-form';
+import { FC, FormEvent } from 'react';
 
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -16,9 +17,9 @@ const LoginPage = () => {
     const { form, onChange } = useForm({ email: '', password: '' })
 
     const handleSubmit = useCallback(
-		e => {
+		(e: FormEvent<HTMLFormElement>)=> {
 			e.preventDefault()
-			dispatch(login(form))
+			dispatch<any>(login(form))
 			navigate(from, { replace: true, state: { from: location.pathname } })
 		},
 		[dispatch, form]
@@ -31,13 +32,13 @@ const LoginPage = () => {
                 <div className='mb-6'>
                     <EmailInput
                         name='email'
-                        value={form.email}
+                        value={form.email ?? ''}
                         onChange={onChange}
                     />
                 </div>
                 <div className='mb-6'>
                     <PasswordInput
-                        value={form.password}
+                        value={form.password ?? ''}
                         name='password'
                         onChange={onChange}
                     />
