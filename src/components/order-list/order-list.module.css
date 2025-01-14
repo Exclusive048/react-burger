@@ -1,0 +1,10 @@
+.main{
+	overflow-y: auto;
+}
+
+.containerOrder{
+	overflow-y: overlay;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}

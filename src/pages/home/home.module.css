@@ -1,8 +1,8 @@
 .row {
-    width: 1245px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-content: center;
-    margin: auto;
-  }
+  width: 1245px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+}

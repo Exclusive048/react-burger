@@ -1,4 +1,4 @@
-export function setCookie(name: string, value: string | number | null | boolean, props?: any) {
+export function setCookie(name: string, value: string | number | null | boolean, props?: Record<string, any>) {
   props = props || {};
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {

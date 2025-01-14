@@ -1,14 +1,15 @@
 import { Button, Input, PasswordInput, } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './pages.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../utils/types/hooks';
 import { Link, Navigate } from 'react-router-dom';
 import { resetPassword } from '../services/actions/user';
 import { useForm } from '../hooks/use-form';
 import { FC, FormEvent } from 'react';
+import { TPassword } from '../utils/types/user';
 
 const ResetPasswordPage: FC = () => {
-    const dispatch = useDispatch();
-    const resetPasswordSuccess = useSelector((state:any) => state.user.resetPasswordSuccess );
+    const dispatch = useAppDispatch();
+    const resetPasswordSuccess = useAppSelector(state => state.user.resetPasswordSuccess );
     
 	const { form, onChange } = useForm({
 		password: '',
@@ -18,7 +19,7 @@ const ResetPasswordPage: FC = () => {
 
     const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch<any>(resetPassword(form));
+        dispatch(resetPassword(form as TPassword));
     };
 
     if (resetPasswordSuccess) {
@@ -42,9 +43,7 @@ const ResetPasswordPage: FC = () => {
                         name='name'
                         placeholder='Введите код из письма'
                         onChange={onChange}
-                        value={form.token ?? ''} 
-                        onPointerEnterCapture={undefined} 
-                        onPointerLeaveCapture={undefined}                    />
+                        value={form.token ?? ''} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                    />
                 </div>
                 <div className={`${styles.button} mb-20`}>
                     <Button type="primary" size="medium" htmlType='submit'>

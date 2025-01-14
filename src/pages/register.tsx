@@ -1,15 +1,16 @@
 import { Button, EmailInput, Input, PasswordInput, } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './pages.module.css';
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from '../utils/types/hooks';
 import { register } from '../services/actions/user';
 import { Link } from 'react-router-dom';
 import { useForm } from '../hooks/use-form';
 import { FC, FormEvent } from 'react';
+import { TRegisterUser } from '../utils/types/user';
 
 
 const RegisterPage: FC = () => {
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const { form, onChange } = useForm({
 		name: '',
 		email: '',
@@ -18,7 +19,7 @@ const RegisterPage: FC = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      dispatch<any>(register(form));
+      dispatch(register(form as TRegisterUser));
     };
 
     return(
@@ -30,9 +31,7 @@ const RegisterPage: FC = () => {
                         placeholder='Имя'
                         name='name'
                         onChange={onChange}
-                        value={form.name ?? ''} 
-                        onPointerEnterCapture={undefined} 
-                        onPointerLeaveCapture={undefined}                    />
+                        value={form.name ?? ''} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                    />
                 </div>
                 <div className='mb-6'>
                     <EmailInput

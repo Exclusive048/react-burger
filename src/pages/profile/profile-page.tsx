@@ -1,13 +1,14 @@
-import { useMatch } from 'react-router-dom'
 import ProfileBody from './profile-body'
 import profileStyles from './profile.module.css'
 import ProfileSideBar from './profile-sidebar'
+import { FC } from 'react'
 
-const ProfilePage = () => {
+const ProfilePage: FC = () => {
+	
 	return (
 		<section className={`${profileStyles.main} mt-20`}>
-			<ProfileSideBar/>
-			<div className={profileStyles.userInfo}>
+			<ProfileSideBar isOrderPage={false}/>
+			<div>
 				<ProfileBody/>
 			</div>
 		</section>
