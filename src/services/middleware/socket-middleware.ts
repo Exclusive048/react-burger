@@ -3,18 +3,15 @@ import { TwsOrdersAllActions } from '../actions/feed-ws';
 import { TwsOrdersUserActions } from '../actions/order-user-ws';
 import { getCookie } from '../../utils/cookie';
 import { AppDispatch, RootState } from '../store';
-import { TOrdersAllActions } from '../actions/feed-ws';
 
-type wsActionsTypes = TOrdersAllActions | TwsOrdersUserActions;
-
-export const socketMiddleware = (wsActions: TwsOrdersAllActions | TwsOrdersUserActions): Middleware => {
+export const socketMiddleware = (wsActions: TwsOrdersAllActions | TwsOrdersUserActions): Middleware<{}, RootState, AppDispatch> => {
     return (store: MiddlewareAPI<AppDispatch, RootState>) => {
         let socket: WebSocket | null = null;
         let timerWsReconnect = 0;
         let isWsConnected = false;
         let url = '';
 
-        return (next) => (action: wsActionsTypes) => {
+        return (next) => (action: any) => {
             const { dispatch } = store;
 
             if ('type' in action && action.type === wsActions.onStart) {
@@ -45,7 +42,11 @@ export const socketMiddleware = (wsActions: TwsOrdersAllActions | TwsOrdersUserA
                     if (isWsConnected) {
                         dispatch({ type: wsActions.onClosed });
                         timerWsReconnect = window.setTimeout(() => {
-                            dispatch({ type: wsActions.onStart, url: url, addToken: 'addToken' in action ? action.addToken : false });
+                            dispatch({ 
+                                type: wsActions.onStart, 
+                                url: url, 
+                                addToken: 'addToken' in action ? action.addToken : false 
+                            });
                         }, 30000);
                     }
                 };
@@ -69,7 +70,7 @@ export const socketMiddleware = (wsActions: TwsOrdersAllActions | TwsOrdersUserA
                 }
             }
 
-            next(action);
+            return next(action);
         };
     };
 };

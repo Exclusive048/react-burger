@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
 import { burgerConstructorReducer } from './reducers/burger-constructor';
 import { burgerIngredientsReducer } from './reducers/burger-ingredients';
 import { makeOrderReducer } from './reducers/make-order';
@@ -22,12 +22,17 @@ const rootReducer = combineReducers({
     getOrder: getOrderReducer,
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
+
+const middleware: Middleware[] = [
+    socketMiddleware(wsOrdersAllActions),
+    socketMiddleware(wsOrdersUserActions),
+];
+
 export const store = configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
-        .concat(socketMiddleware(wsOrdersAllActions))
-        .concat(socketMiddleware(wsOrdersUserActions)),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type EnhancedStore = typeof store;
