@@ -1,5 +1,6 @@
 import { postRequest } from "../../utils/post-request";
 import { requestWithToken } from "../../utils/request-with-token";
+import { refreshToken } from "../../utils/refresh-token";
 import { baseURL } from "../../utils/base-url";
 import { deleteCookie, setCookie, getCookie } from '../../utils/cookie'
 import { TAuthResponse, TLoginUser, TRegisterUser, TUserResponse, TPassword } from "../../utils/types/user";
@@ -257,37 +258,56 @@ export function register(user: TRegisterUser) {
 }
 
 export function login(user: TLoginUser) {
-	return function (dispatch: AppDispatch) {
-		dispatch(loginRequest())
-		postRequest<TAuthResponse>(loginEndpoint, 
-            {
-                email: user.email,
-                password: user.password,
+    return function (dispatch: AppDispatch) {
+        dispatch(loginRequest());
+        postRequest<TAuthResponse>(loginEndpoint, {
+            email: user.email,
+            password: user.password,
+        })
+            .then((res) => {
+                const accessToken = res.accessToken.split('Bearer ')[1];
+                setCookie('accessToken', accessToken); 
+                setCookie('refreshToken', res.refreshToken);
+                dispatch(loginSuccess(res));
+                dispatch(getUser());
             })
-			.then(res => {
-				setCookie('accessToken', res.accessToken.split('Bearer ')[1])
-				setCookie('refreshToken', res.refreshToken)
-				dispatch(loginSuccess(res))
-			})
-			.catch(() => {
-				dispatch(loginFailed())
-			})
-	}
+            .catch(() => {
+                dispatch(loginFailed());
+            });
+    };
 }
 
+
 export function getUser() {
-	return function (dispatch: AppDispatch) {
-		dispatch(getUseraRequest())
-		requestWithToken<TUserResponse>(userEndpoint, "GET", {})
-			.then(res => {
-				console.log(res)
-				dispatch(getUserSuccess(res))
-			})
-			.catch(() => {
-				dispatch(getUserFailed())
-			})
-	}
+    return function (dispatch: AppDispatch) {
+        dispatch(getUseraRequest());
+        const token = getCookie('accessToken');
+        if (!token) {
+            console.error("No token found for getUser");
+            dispatch(getUserFailed());
+            return;
+        }
+
+        requestWithToken<TUserResponse>(userEndpoint, "GET", {})
+            .then((res) => {
+                dispatch(getUserSuccess(res));
+            })
+            .catch(async (err) => {
+                if (err.message === "Unauthorized") {
+                    try {
+                        const newToken = await refreshToken(); // Обновляем токен
+                        return getUser()(dispatch); // Повторяем запрос
+                    } catch (refreshErr) {
+                        console.error("Unable to refresh token for getUser", refreshErr);
+                        dispatch(getUserFailed());
+                    }
+                } else {
+                    dispatch(getUserFailed());
+                }
+            });
+    };
 }
+
 
 export function logout() {
 	return function (dispatch: AppDispatch) {

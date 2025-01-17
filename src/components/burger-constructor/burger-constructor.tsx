@@ -1,4 +1,4 @@
-import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgerConstructorStyles from "./burger-constructor.module.css"
 import OrderDetails from "../order-details/order-details";
 import Modal from "../modal/modal";
