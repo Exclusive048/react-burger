@@ -1,22 +1,21 @@
-import React from 'react';
-import { Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Logo, BurgerIcon, ListIcon, ProfileIcon,} from '@ya.praktikum/react-developer-burger-ui-components';
 import headerStyles from './app-header.module.css';
 import { useLocation , NavLink, Link } from "react-router-dom";
+import { FC } from 'react';
 
-
-const iconType = (link : string, active : string) => {
-    if (active === link) return "primary";
-    return "secondary";
- };
-
- const colorTextType = (link : string, active : string) => {
-    if (active === link) return headerStyles.menuItemText;
-    return headerStyles.colorTitle;
-
- }
-const AppHeader = () => {
-
+const AppHeader: FC = () => {
     const location = useLocation(); 
+    const iconType = (link: string, active:string) => {
+        if (active === link) return "primary";
+        return "secondary";
+     };
+
+    const colorTextType = (link:string, active:string) => {
+        if (active === link) return headerStyles.menuItemText;
+        return headerStyles.colorTitle;
+    
+     }
+
     return(
         <header className={headerStyles.header}>
             <nav className={headerStyles.nav}>
@@ -25,9 +24,9 @@ const AppHeader = () => {
                         <BurgerIcon type={iconType("/", location.pathname)}/>
                         <span className={`${colorTextType("/", location.pathname)} text text_type_main-default ml-2`}>Конструктор</span>
                     </NavLink>
-                    <NavLink to="/profile/orders" className={`${headerStyles.menuItem} p-4`}>
-                        <ListIcon type={iconType("/profile/orders", location.pathname)}/>
-                        <span className={`${colorTextType("/profile/orders", location.pathname)} ${headerStyles.colorTitle} text text_type_main-default ml-2`}>Лента заказов</span>
+                    <NavLink to="/feed" className={`${headerStyles.menuItem} p-4`}>
+                        <ListIcon type={iconType("/feed", location.pathname)}/>
+                        <span className={`${colorTextType("/feed", location.pathname)} ${headerStyles.colorTitle} text text_type_main-default ml-2`}>Лента заказов</span>
                     </NavLink>
                 </div>
                 <div className={`${headerStyles.centerPosition} ${headerStyles.fullHeight}`}>

@@ -1,15 +1,16 @@
 import { Button, EmailInput, PasswordInput, } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './pages.module.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from '../utils/types/hooks';
 import { useCallback } from 'react'
 import { login } from '../services/actions/user';
 import { useForm } from '../hooks/use-form';
 import { FC, FormEvent } from 'react';
+import { TLoginUser } from '../utils/types/user';
 
 
 const LoginPage: FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from || "/";
@@ -19,7 +20,7 @@ const LoginPage: FC = () => {
     const handleSubmit = useCallback(
 		(e: FormEvent<HTMLFormElement>)=> {
 			e.preventDefault()
-			dispatch<any>(login(form))
+			dispatch(login(form as TLoginUser))
 			navigate(from, { replace: true, state: { from: location.pathname } })
 		},
 		[dispatch, form]
