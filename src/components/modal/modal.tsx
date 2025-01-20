@@ -22,19 +22,19 @@ const Modal: FC<TModal> = (props) => {
   return createPortal(
     (
       <>
-      <div onClick={(e) => e.stopPropagation()} className={modalStyles.modal}>
+      <div onClick={(e) => e.stopPropagation()} className={modalStyles.modal} test-scenario='modal'>
         {props.header ? (
-          <div className={`${modalStyles.modalHeader} ml-10 mr-10 mt-10`}>
-            <p className="text text_type_main-large">{props.header}</p>
-            <div className={`${modalStyles.closeModalCursor}`} onClick={props.onCloseModal}>
-              <CloseIcon type="primary" />
+          <div className={`${modalStyles.modalHeader} ml-10 mr-10 mt-10`} test-scenario='modal_title'>
+          <p className="text text_type_main-large">{props.header} </p>
+          <div className={`${modalStyles.closeModalCursor}`} onClick={props.onCloseModal} test-scenario='close_modal'>
+            <CloseIcon type="primary"/>
             </div>
           </div>
         ) : (
           <div>
-            <div className={`${modalStyles.closeModalIcon} mr-10 mt-15`} onClick={props.onCloseModal}>
+            <div className={`${modalStyles.closeModalIcon} mr-10 mt-15`} onClick={props.onCloseModal} test-scenario='close_modal'>
               <div className={modalStyles.cursorStyle}>
-                <CloseIcon  type="primary" />
+                <CloseIcon  type="primary"/>
               </div>
             </div>
           </div>

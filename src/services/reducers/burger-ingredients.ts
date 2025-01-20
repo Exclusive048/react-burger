@@ -9,7 +9,7 @@ export type TIngredientsState = {
     ingredientDetail: TIngredient | null
 }
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,

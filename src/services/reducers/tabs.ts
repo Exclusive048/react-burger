@@ -6,7 +6,7 @@ type TSwitchTabState = {
     currenttab: string
 }
 
-const initialState: TSwitchTabState = {
+export const initialState: TSwitchTabState = {
     currenttab: 'bun'
 }
 

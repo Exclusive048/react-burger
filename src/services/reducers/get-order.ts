@@ -8,7 +8,7 @@ type TGetOrderState = {
     order: TOrderItem | null;
 }
 
-const initialState : TGetOrderState = {
+export const initialState : TGetOrderState = {
     orderRequest: false,
     requestError: null,
     order: null

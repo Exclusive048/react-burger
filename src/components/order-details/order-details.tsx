@@ -5,7 +5,7 @@ import { TOrderDetails } from "../../utils/types/order";
 const OrderDetails: FC<TOrderDetails> = (props) => {
     return(
             <div>
-                <div className={`${orderDetailsStyles.orderId} text text_type_digits-large mt-30`}> 
+                <div className={`${orderDetailsStyles.orderId} text text_type_digits-large mt-30`} test-scenario='order_number'> 
                     {props.orderIdentifier}
                 </div>
                 <div className={`${orderDetailsStyles.textOrder} mt-8`}>

@@ -27,3 +27,16 @@
     right: 0;
     cursor: pointer;
   }
+
+  .closeButton {
+    background: none;
+    border: none;
+    padding: 0;
+    position: absolute;
+
+    top: 60px;
+    right: 40px;
+    cursor: pointer;
+    transition: 200ms;
+  }
+  

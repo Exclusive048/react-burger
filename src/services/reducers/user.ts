@@ -48,7 +48,7 @@ type TUserState = {
     isAuth: boolean
 }
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
     registerRequest: false,
 	registerFailed: false,
     accessToken: '',
