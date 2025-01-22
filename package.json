@@ -1,7 +1,7 @@
 {
   "name": "react-burger",
   "version": "0.1.0",
-  "homepage": "https://Exclusive048.github.io/react-burger",
+  "homepage": "https://exclusive048.github.io/react-burger/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
