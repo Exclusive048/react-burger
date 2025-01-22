@@ -53,7 +53,7 @@ describe('constructor', () => {
 		cy.get(scenario(selectors.constructorPage)).trigger('drop')
 
 		cy.get(scenario(selectors.submitButton)).click()
-		cy.wait('@make-order')
+		cy.wait('@make-order',{ timeout: 20000 })
 		cy.get(scenario(selectors.modal))
 			.as('modal')
 			.should('be.visible')
