@@ -25,14 +25,14 @@ export const requestWithToken = async <T>(
 ): Promise<T> => {
     const createHeaders = () => ({
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getCookie('accessToken')}`, // Берем актуальный токен из cookies
+        Authorization: `Bearer ${getCookie('accessToken')}`,
     });
 
     const checkResponse = async (response: Response): Promise<T> => {
         if (!response.ok) {
-            throw await response.json(); // Пробрасываем ошибку с серверным сообщением
+            throw await response.json(); 
         }
-        return response.json(); // Явно указываем, что возвращаем данные типа T
+        return response.json();
     };
 
     const makeRequest = async (): Promise<T> => {
@@ -41,7 +41,7 @@ export const requestWithToken = async <T>(
             ? await fetch(endpoint, {
                   method: method,
                   headers,
-                  body: JSON.stringify(payload), // Отправляем payload напрямую
+                  body: JSON.stringify(payload), 
               }).then(checkResponse)
             : await fetch(endpoint, {
                   method: method,
@@ -50,19 +50,19 @@ export const requestWithToken = async <T>(
     };
 
     try {
-        return await makeRequest(); // Первая попытка выполнения запроса
+        return await makeRequest();
     } catch (err) {
         if ((err as { message: string }).message === "jwt expired") {
-            // Обновляем токен
+            
             const refreshData = await postRequest<TRefreshResponse>(resetTokenEndpoint, {
                 token: getCookie("refreshToken"),
             });
-            setCookie("accessToken", refreshData.accessToken.split("Bearer ")[1]); // Сохраняем новый accessToken
-            setCookie("refreshToken", refreshData.refreshToken); // Сохраняем новый refreshToken
+            setCookie("accessToken", refreshData.accessToken.split("Bearer ")[1]); 
+            setCookie("refreshToken", refreshData.refreshToken); 
 
-            return await makeRequest(); // Повторяем запрос с обновленным токеном
+            return await makeRequest(); 
         } else {
-            return Promise.reject(err); // Пробрасываем остальные ошибки
+            return Promise.reject(err); 
         }
     }
 };
