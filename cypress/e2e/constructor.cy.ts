@@ -10,6 +10,7 @@ describe('constructor', () => {
 		cy.intercept('POST', `${baseURL}/orders`, {
 			fixture: 'order.json',
 		}).as('make-order')
+		cy.setCookie('accessToken', 'test-access-token');
 		cy.visit('')
 	})
 
