@@ -1,5 +1,4 @@
 import { ADD_BUN, ADD_INGREDIENT, DELETE_INGREDIENT, MOVE_INGREDIENT } from "../actions/constants";
-import { PayloadAction } from '@reduxjs/toolkit';
 import { TIngredient } from "../../utils/types/ingredient";
 import { TConstructorActions } from "../actions/burger-constructor";
 import update from 'immutability-helper';
@@ -9,7 +8,7 @@ export type TConstructorState = {
     ingredients: Array<TIngredient>;
 };
 
-const initialState: TConstructorState = {
+export const initialState: TConstructorState = {
     bun: null,
     ingredients: [],
 };

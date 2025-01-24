@@ -42,13 +42,13 @@ const BurgerIngredientsElem: FC<TBurgerIngredient> = ({item}) => {
 				state={{ backgroundLocation: location }}
         className={elemStyles.link}
 		>
-      <div className={`${elemStyles.elem} ml-4 mr-5 mb-10 mt-6`} ref={ref} style={{opacity}} onClick={ingredientClick}>
+      <div className={`${elemStyles.elem} ml-4 mr-5 mb-10 mt-6`} ref={ref} style={{opacity}} onClick={ingredientClick} test-scenario='burger_ingredient_elem'>
         <img className={`${elemStyles.elem} ml-4 mr-5`} alt="previewImage" src={item.image}/>
         <div className={`${elemStyles.price} mb-1 mt-1`}>
           <p className="text text_type_digits-small mr-2">{item.price}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <p className={`${elemStyles.name} text text_type_main-small`}>
+        <p className={`${elemStyles.name} text text_type_main-small`} test-scenario='burger_ingredient_name'>
           {item.name}
         </p>
         {count > 0 && <Counter count={count} size='default'/>}

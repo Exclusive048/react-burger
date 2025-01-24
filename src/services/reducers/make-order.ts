@@ -7,7 +7,7 @@ export type TMakeOrderState = {
 	orderFailed: boolean
   order: TOrder
 }
-const initialState: TMakeOrderState = {
+export const initialState: TMakeOrderState = {
     order: null,
     orderRequest: false,
     orderFailed: false

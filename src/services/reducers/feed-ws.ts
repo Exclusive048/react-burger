@@ -1,5 +1,5 @@
 import { TOrdersList } from '../../utils/types/order';
-import {ORDERS_ALL_SUCCESS, ORDERS_ALL_ERROR, ORDERS_ALL_CLOSED, ORDERS_ALL_MESSAGE  } from '../actions/constants';
+import { ORDERS_ALL_SUCCESS, ORDERS_ALL_ERROR, ORDERS_ALL_CLOSED, ORDERS_ALL_MESSAGE } from '../actions/constants';
 import { TOrdersAllActions } from '../actions/feed-ws';
 
 type TOrdersAllState = {
@@ -8,7 +8,7 @@ type TOrdersAllState = {
     error: string | null;
 };
 
-const initialState: TOrdersAllState = {
+export const initialState: TOrdersAllState = {
     connected: false,
     message: null,
     error: null

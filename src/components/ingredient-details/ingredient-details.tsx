@@ -13,25 +13,25 @@ const IngredientDetails: FC = () =>{
         {ingredient &&
         <div className={ingredientDetailsStyle.mainContainer}>
             <img alt="previewImage" src={ingredient.image_large}/>
-            <p className={`${ingredientDetailsStyle.ingredientNameText}text text_type_main-medium mt-4`}>
+            <p className={`${ingredientDetailsStyle.ingredientNameText}text text_type_main-medium mt-4`} test-scenario='ingredient_name'>
                 {ingredient.name}
             </p>
             <div className={`${ingredientDetailsStyle.macronutrientContainer} mt-8 mb-15`}>
                 <div className={ingredientDetailsStyle.macronutrientElem}>
                     <p className="text text_type_main-small text_color_inactive">Калории,ккал</p>
-                    <p className="text text_type_digits-default text_color_inactive">{ingredient.calories}</p>
+                    <p className="text text_type_digits-default text_color_inactive" test-scenario='ingredient_calories'>{ingredient.calories}</p>
                 </div>
                 <div className={ingredientDetailsStyle.macronutrientElem}>
                     <p className="text text_type_main-small text_color_inactive">Белки, г</p>
-                    <p className="text text_type_digits-default text_color_inactive">{ingredient.proteins}</p>
+                    <p className="text text_type_digits-default text_color_inactive" test-scenario='ingredient_proteins'>{ingredient.proteins}</p>
                 </div>
                 <div className={ingredientDetailsStyle.macronutrientElem}>
                     <p className="text text_type_main-small text_color_inactive">Жиры, г</p>
-                    <p className="text text_type_digits-default text_color_inactive">{ingredient.fat}</p>
+                    <p className="text text_type_digits-default text_color_inactive" test-scenario='ingredient_fat'>{ingredient.fat}</p>
                 </div>
                 <div className={ingredientDetailsStyle.macronutrientElem}>
                     <p className="text text_type_main-small text_color_inactive">Углеводы, г</p>
-                    <p className="text text_type_digits-default text_color_inactive">{ingredient.carbohydrates}</p>
+                    <p className="text text_type_digits-default text_color_inactive" test-scenario='ingredient_carbohydrates'>{ingredient.carbohydrates}</p>
                 </div>
             </div>
         </div>

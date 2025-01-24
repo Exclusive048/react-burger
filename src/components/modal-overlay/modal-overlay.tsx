@@ -5,7 +5,7 @@ import { TModalShort } from "../../utils/types/modal";
 
 const ModalOverlay: FC<TModalShort> = (props) => {
     return (
-        <div className={modalOverlayStyles.modalOverlay} onClick={props.onCloseModal}/>
+        <div className={modalOverlayStyles.modalOverlay} onClick={props.onCloseModal} test-scenario='close_button'/>
     )
 } 
 
